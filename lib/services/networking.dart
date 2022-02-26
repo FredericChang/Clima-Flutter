@@ -21,6 +21,7 @@ class NetworkHelper {
 
     if (response.statusCode == 200){
       String data = response.body;
+      return jsonDecode(data);
       // var longitude = jsonDecode(data)['coord']['lon'];
       // var latitude = jsonDecode(data)['coord']['lat'];
       // print('longitude= ${longitude} and latitude= ${latitude}');

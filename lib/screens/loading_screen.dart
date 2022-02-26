@@ -33,15 +33,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
         queryParameters: {'lat' : latitude.toString(), 'lon' : longitude.toString(), 'appid' : apiKey}
     );
     NetworkHelper newworkHelper = NetworkHelper(weatherUrl);
-
     var weatherData = await newworkHelper.getData();
-
-    String cityName =decodedData['name'];
-    int condition = decodedData['weather'][0]['id'];
-    double temperature = decodedData['main']['temp'];
-    print("cityName = ${cityName}");
-    print("condition = ${condition}");
-    print("temperature = ${temperature}");
+    //
+    // String cityName =decodedData['name'];
+    // int condition = decodedData['weather'][0]['id'];
+    // double temperature = decodedData['main']['temp'];
+    // print("cityName = ${cityName}");
+    // print("condition = ${condition}");
+    // print("temperature = ${temperature}");
 
 
   }
