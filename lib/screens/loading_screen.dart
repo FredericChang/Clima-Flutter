@@ -1,10 +1,13 @@
+import 'package:clima/screens/location_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:clima/services/location.dart';
+import 'package:clima/services/weather.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:clima/services/networking.dart';
 
-const apiKey = 'bf1fd9b91d8d9ec921a23c223266d14b';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+
 class LoadingScreen extends StatefulWidget {
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
@@ -15,41 +18,32 @@ class _LoadingScreenState extends State<LoadingScreen> {
   double longitude;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // AppSettings.openLocationSettings;
+    print('init');
+    getLocationData();
+  }
+
+  @override
   void deactivate() {
     // TODO: implement deactivate
     super.deactivate();
   }
 
   void getLocationData() async {
-    Location location = Location();
-    await location.getLocation();
-    latitude =  location.latitude;
-    longitude = location.longitude;
-
-    var weatherUrl = Uri(
-        scheme: 'http',
-        host:'api.openweathermap.org',
-        path:'/data/2.5/weather',
-        queryParameters: {'lat' : latitude.toString(), 'lon' : longitude.toString(), 'appid' : apiKey}
-    );
-    NetworkHelper newworkHelper = NetworkHelper(weatherUrl);
-    var weatherData = await newworkHelper.getData();
-    //
-    // String cityName =decodedData['name'];
-    // int condition = decodedData['weather'][0]['id'];
-    // double temperature = decodedData['main']['temp'];
+    print('init');
+    var weatherData = WeatherModel().getLocationWeather();
+    // String cityName =weatherData['name'];
+    // int condition = weatherData['weather'][0]['id'];
+    // double temperature = weatherData['main']['temp'];
     // print("cityName = ${cityName}");
     // print("condition = ${condition}");
     // print("temperature = ${temperature}");
-
-
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // getLocation();
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+      return LocationScreen(locationWeather: weatherData,);
+    }));
 
   }
 
@@ -73,29 +67,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
       print('longitude= ${longitude} and latitude= ${latitude}');
       var weatherDes = jsonDecode(data)['weather'][0]['description'];
       print('description= ${weatherDes}');
-
-
-
     }else {
       print(response.statusCode);
     }
-
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            //Get the current location
-            // getLocation();
-            getData(33, 139, apiKey);
-          },
-          child: Text('Get Location'),
-        ),
-      ),
+        // child: SpinKitDoubleBounce(
+        //   color: Colors.white,
+        //   size: 100.0,
+        //
+        // ),
+      )
     );
   }
+
 }

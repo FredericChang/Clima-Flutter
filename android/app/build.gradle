@@ -36,6 +36,7 @@ android {
         applicationId "co.appbrewery.clima"
         minSdkVersion 19
         targetSdkVersion 26
+        compileSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
