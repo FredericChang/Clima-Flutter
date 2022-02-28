@@ -5,7 +5,7 @@ class NetworkHelper {
   NetworkHelper(this.url);
   final dynamic url;
 
-  Future getData() async {
+  Future<void> getData() async {
     //
     // var weatherUrl = Uri(
     //     scheme: 'http',
@@ -34,7 +34,7 @@ class NetworkHelper {
       // double temperature = decodedData['main']['temp'];
 
     }else {
-      print(response.statusCode);
+      print('getData() = ${response.statusCode}');
 
     }
   }

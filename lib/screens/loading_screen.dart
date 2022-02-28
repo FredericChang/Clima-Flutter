@@ -34,7 +34,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   void getLocationData() async {
     print('init');
-    var weatherData = WeatherModel().getLocationWeather();
+    var weatherData = await WeatherModel().getLocationWeather();
     // String cityName =weatherData['name'];
     // int condition = weatherData['weather'][0]['id'];
     // double temperature = weatherData['main']['temp'];
