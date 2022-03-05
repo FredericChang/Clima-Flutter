@@ -5,9 +5,6 @@ import 'package:clima/services/weather.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-
 class LoadingScreen extends StatefulWidget {
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
@@ -64,9 +61,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
       String data = response.body;
       var longitude = jsonDecode(data)['coord']['lon'];
       var latitude = jsonDecode(data)['coord']['lat'];
-      print('longitude= ${longitude} and latitude= ${latitude}');
+      print('longitude= $longitude and latitude= $latitude');
       var weatherDes = jsonDecode(data)['weather'][0]['description'];
-      print('description= ${weatherDes}');
+      print('description= $weatherDes');
     }else {
       print(response.statusCode);
     }
