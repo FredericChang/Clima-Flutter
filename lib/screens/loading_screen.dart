@@ -1,6 +1,7 @@
 import 'package:clima/screens/location_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/services/weather.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,7 +16,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   double longitude;
 
   @override
-  void initState() {
+  void initState()  {
     // TODO: implement initState
     super.initState();
     // AppSettings.openLocationSettings;
@@ -29,7 +30,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     super.deactivate();
   }
 
-  void getLocationData() async {
+  Future<void> getLocationData() async {
     print('init');
     var weatherData = await WeatherModel().getLocationWeather();
     // String cityName =weatherData['name'];
@@ -73,11 +74,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        // child: SpinKitDoubleBounce(
-        //   color: Colors.white,
-        //   size: 100.0,
-        //
-        // ),
+        child: SpinKitDoubleBounce(
+          color: Colors.white,
+          size: 100.0,
+
+        ),
       )
     );
   }
